@@ -1,0 +1,41 @@
+---
+documentclass: "article"
+lang: true
+babel-lang: "french"
+geometry:
+  - left=2cm
+  - right=2cm
+  - top=2.5cm
+  - bottom=2.5cm
+title: "Manipulations élémentaires autour de l'inertie"
+subtitle: "Analyse statistique des peuplements forestiers du bassin du Congo"
+author: 
+- EL MAZZOUJI Wahel
+- GILLET Louison
+date: "2024/2025"
+output: 
+  pdf_document:
+    extra_dependencies: ["float"]
+    keep_tex : yes
+    fig_caption : yes 
+    toc_depth: 3
+    number_sections: true
+    includes:
+      in_header: header.tex
+---
+```{r chunksetup, include = FALSE}
+library('knitr')
+opts_chunk$set(comment = '', echo = FALSE,  tidy = TRUE, 
+               fig.pos = 'ht!', fig.align='center')
+```
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/ssd.png}
+\end{figure}
+
+\newpage
+
+\tableofcontents
+
+\newpage
