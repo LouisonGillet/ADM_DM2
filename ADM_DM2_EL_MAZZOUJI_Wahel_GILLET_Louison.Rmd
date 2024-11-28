@@ -89,11 +89,23 @@ Pour mettre en place cette classification, on crée une matrice des distances eu
 dp <- dist(datapeuple, method = "euclidean")
 CAHWard <- hclust(d = dp, method = "ward.D")
 ```
+
 Ces deux fonctions nous permettent de tracer le dendogramme de la hiérarchie indicée par la méthode de Ward representé par la figure ci-dessous.  
 ```{r DendrogrammeWard, fig.cap = "Dendrogramme - Méthode de Ward",fig.pos='H'}
 CAHWard$call <- NULL
 plot(CAHWard, labels = FALSE, main= "",ylab="")
 title(ylab = "Hauteur")
+```
+
+```{r, echo=FALSE}
+heights <- CAHWard$height
+```
+
+```{r HistogrammeWard, fig.cap = "Histogramme - Ward", fig.pos='H'}
+ggplot(data.frame(heights), aes(x = heights)) +
+  geom_histogram(binwidth = 0.5, color = "black", fill = "lightgray", 
+                 lwd = 1, alpha = 1, position = "dodge") +
+  theme_minimal()
 ```
 
 ### Indice du saut maximum 
