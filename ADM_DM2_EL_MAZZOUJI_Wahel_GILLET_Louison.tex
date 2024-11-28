@@ -37,6 +37,46 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -65,6 +105,7 @@
 \def\languageshorthands#1{}
 \usepackage{fancyhdr}
 \usepackage{float}
+\usepackage[skip=5pt]{caption} % Réduit l'espace entre l'image et la légende
 \pagestyle{fancy}
 \fancyhf{} % Efface les en-têtes et pieds de page par défaut
 \fancyhead[L]{EL MAZZOUJI Wahel, GILLET Louison} % À gauche
@@ -72,6 +113,19 @@
 \fancyhead[R]{HAX711X - M1 SSD} % À droite
 \fancyfoot[C]{\thepage} % Numéro de page au centre du pied de page
 \usepackage{float}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -79,21 +133,13 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Manipulations élémentaires autour de l'inertie},
+  pdftitle={Classification automatique},
   pdfauthor={EL MAZZOUJI Wahel; GILLET Louison},
   pdflang={true},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Manipulations élémentaires autour de l'inertie}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{Analyse statistique des peuplements forestiers du bassin du
-Congo}
+\title{Classification automatique}
 \author{EL MAZZOUJI Wahel \and GILLET Louison}
 \date{2024/2025}
 
@@ -110,5 +156,114 @@ Congo}
 \tableofcontents
 
 \newpage
+
+\hypertarget{partie-1}{%
+\section{Partie 1}\label{partie-1}}
+
+\hypertarget{classification-hiuxe9rarchique-de-parcelles-forestiuxe8res-tropicales}{%
+\section{Classification hiérarchique de parcelles forestières
+tropicales}\label{classification-hiuxe9rarchique-de-parcelles-forestiuxe8res-tropicales}}
+
+\hypertarget{donnuxe9es}{%
+\subsection{Données}\label{donnuxe9es}}
+
+Nous voulons proposer plusieurs classifications des parcelles décrites
+par leur peuplement arboré. Pour cela nous disposons des données etc
+Prépa des données : standardisation
+
+\hypertarget{cah-des-parcelles-sur-les-densituxe9s-de-peuplement}{%
+\subsection{CAH des parcelles sur les densités de
+peuplement}\label{cah-des-parcelles-sur-les-densituxe9s-de-peuplement}}
+
+Dans cette partie, nous allons traiter différentes méthodes de
+classification hiérarchique ascendante. Ces classifications se feront à
+partir de plusieurs indices. Il existe essentiellement deux familles
+d'indice à savoir les indices d'inertie et les indices de saut.
+
+\hypertarget{indice-de-ward}{%
+\subsubsection{Indice de Ward}\label{indice-de-ward}}
+
+Nous nous intéressons tout d'abord à la méthode de classification par
+l'indice d'inertie externe, autrement appelé indice de Ward. Rappelons
+que pour deux centres de gravité \(A\) et \(B\), l'indice de Ward est
+donné par :
+
+\[
+  \mu(A,B)=\text{In} \left( \left\{ (\bar{x}_A, w_A), (\bar{x}_B, w_B) \right\} \right) = \frac{w_A w_B}{w_A + w_B} \| \bar{x}_A - \bar{x}_B \|_2^2
+\]
+
+Pour mettre en place cette classification, on crée une matrice des
+distances euclidiennes par la fonction \emph{dist} de R. Ensuite, nous
+utilisons la fonction \emph{hclust} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dp }\OtherTok{\textless{}{-}} \FunctionTok{dist}\NormalTok{(datapeuple, }\AttributeTok{method =} \StringTok{"euclidean"}\NormalTok{)}
+\NormalTok{CAHWard }\OtherTok{\textless{}{-}} \FunctionTok{hclust}\NormalTok{(}\AttributeTok{d =}\NormalTok{ dp, }\AttributeTok{method =} \StringTok{"ward.D"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Ces deux fonctions nous permettent de tracer le dendogramme de la
+hiérarchie indicée par la méthode de Ward representé par la figure
+ci-dessous.\\
+
+\begin{figure}[H]
+
+{\centering \includegraphics{ADM_DM2_EL_MAZZOUJI_Wahel_GILLET_Louison_files/figure-latex/DendrogrammeWard-1} 
+
+}
+
+\caption{Dendrogramme - Méthode de Ward}\label{fig:DendrogrammeWard}
+\end{figure}
+
+\hypertarget{indice-du-saut-maximum}{%
+\subsubsection{Indice du saut maximum}\label{indice-du-saut-maximum}}
+
+Pour deux classes \(A\) et \(B\), l'indice de saut maximum est donné par
+\[
+  \mu(A, B) = \max_{a \in A, b \in B} \left(d(a, b) \right)
+\]
+
+\begin{figure}[H]
+
+{\centering \includegraphics{ADM_DM2_EL_MAZZOUJI_Wahel_GILLET_Louison_files/figure-latex/DendrogrammeMax-1} 
+
+}
+
+\caption{Dendrogramme - Méthode du saut maximum}\label{fig:DendrogrammeMax}
+\end{figure}
+
+\hypertarget{indice-du-saut-moyen}{%
+\subsubsection{Indice du saut moyen}\label{indice-du-saut-moyen}}
+
+Pour deux classes \(A\) et \(B\), l'indice de saut moyen est donné par
+\[
+  \mu(A, B) = \frac{1}{w_A w_B} \sum_{a \in A, b \in B} w_a w_b \, d(a, b)
+\]
+
+\begin{figure}[H]
+
+{\centering \includegraphics{ADM_DM2_EL_MAZZOUJI_Wahel_GILLET_Louison_files/figure-latex/DendrogrammeMoy-1} 
+
+}
+
+\caption{Dendrogramme - Méthode du saut moyen}\label{fig:DendrogrammeMoy}
+\end{figure}
+
+\hypertarget{indice-du-saut-minimum}{%
+\subsubsection{Indice du saut minimum}\label{indice-du-saut-minimum}}
+
+Pas traité car : justification
+
+\hypertarget{ruxb2-des-diffuxe9rentes-partitions}{%
+\subsection{R² des différentes
+partitions}\label{ruxb2-des-diffuxe9rentes-partitions}}
+
+\hypertarget{optimisation-dune-partition-avec-les-k-means}{%
+\subsection{Optimisation d'une partition avec les
+K-means}\label{optimisation-dune-partition-avec-les-k-means}}
+
+Nous cherchons désormais à optimiser chacune de nos partitions jugées
+prometteuses issues de la CAH grâce à la méthodes des K-means.
 
 \end{document}

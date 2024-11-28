@@ -7,8 +7,8 @@ geometry:
   - right=2cm
   - top=2.5cm
   - bottom=2.5cm
-title: "Manipulations élémentaires autour de l'inertie"
-subtitle: "Analyse statistique des peuplements forestiers du bassin du Congo"
+title: "Classification automatique"
+subtitle: ""
 author: 
 - EL MAZZOUJI Wahel
 - GILLET Louison
@@ -39,3 +39,89 @@ opts_chunk$set(comment = '', echo = FALSE,  tidy = TRUE,
 \tableofcontents
 
 \newpage
+
+```{r, echo=FALSE, include=FALSE}
+load(file = "ressources/prepa.Rdata")
+if(!require(ggplot2)){
+  install.packages("ggplot2")
+}
+if(!require(dplyr)){
+  install.packages("dplyr")
+}
+if(!require(tidyr)){
+  install.packages("tidyr")
+}
+if(!require(gt)){
+  install.packages("gt")
+}
+if(!require(knitr)){
+  install.packages("knitr")
+}
+if(!require(kableExtra)){
+  install.packages("kableExtra")
+}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(gt)
+library(knitr)
+library(kableExtra)
+```
+
+# Partie 1 
+# Classification hiérarchique de parcelles forestières tropicales
+## Données 
+Nous voulons proposer plusieurs classifications des parcelles décrites par leur peuplement arboré. Pour cela nous disposons des données etc 
+Prépa des données : standardisation 
+
+## CAH des parcelles sur les densités de peuplement
+Dans cette partie, nous allons traiter différentes méthodes de classification hiérarchique ascendante. Ces classifications se feront à partir de plusieurs indices. Il existe essentiellement deux familles d'indice à savoir les indices d'inertie et les indices de saut. 
+
+### Indice de Ward 
+Nous nous intéressons tout d'abord à la méthode de classification par l'indice d'inertie externe, autrement appelé indice de Ward. Rappelons que pour deux centres de gravité $A$ et $B$, l'indice de Ward est donné par : 
+
+\[
+  \mu(A,B)=\text{In} \left( \left\{ (\bar{x}_A, w_A), (\bar{x}_B, w_B) \right\} \right) = \frac{w_A w_B}{w_A + w_B} \| \bar{x}_A - \bar{x}_B \|_2^2
+\]
+
+Pour mettre en place cette classification, on crée une matrice des distances euclidiennes par la fonction *dist* de R. Ensuite, nous utilisons la fonction *hclust* : 
+```{r, eval=FALSE, echo=TRUE}
+dp <- dist(datapeuple, method = "euclidean")
+CAHWard <- hclust(d = dp, method = "ward.D")
+```
+Ces deux fonctions nous permettent de tracer le dendogramme de la hiérarchie indicée par la méthode de Ward representé par la figure ci-dessous.  
+```{r DendrogrammeWard, fig.cap = "Dendrogramme - Méthode de Ward",fig.pos='H'}
+CAHWard$call <- NULL
+plot(CAHWard, labels = FALSE, main= "",ylab="")
+title(ylab = "Hauteur")
+```
+
+### Indice du saut maximum 
+Pour deux classes $A$ et $B$, l'indice de saut maximum est donné par 
+\[
+  \mu(A, B) = \max_{a \in A, b \in B} \left(d(a, b) \right)
+\]
+```{r DendrogrammeMax, fig.cap = "Dendrogramme - Méthode du saut maximum",fig.pos='H'}
+CAHMax$call <- NULL
+plot(CAHMax, labels = FALSE, main = "", ylab="")
+title(ylab = "Hauteur")
+```
+
+### Indice du saut moyen 
+Pour deux classes $A$ et $B$, l'indice de saut moyen est donné par 
+\[
+  \mu(A, B) = \frac{1}{w_A w_B} \sum_{a \in A, b \in B} w_a w_b \, d(a, b)
+\]
+```{r DendrogrammeMoy, fig.cap = "Dendrogramme - Méthode du saut moyen",fig.pos='H'}
+CAHMoy$call <- NULL
+plot(CAHMoy, labels = FALSE, main="", ylab="")
+title(ylab = "Hauteur")
+```
+
+### Indice du saut minimum 
+Pas traité car : justification 
+
+## R² des différentes partitions 
+
+## Optimisation d'une partition avec les K-means 
+Nous cherchons désormais à optimiser chacune de nos partitions jugées prometteuses issues de la CAH grâce à la méthodes des K-means. 
